@@ -1,20 +1,6 @@
 import streamlit as st
 import pandas as pd
-import time
-import os
-import pyttsx3
 from streamlit_extras.add_vertical_space import add_vertical_space
-
-# Function to speak welcome message
-def speak_welcome():
-    engine = pyttsx3.init()
-    engine.say("Welcome to Growth Mindset Project, made by Jareer Shafiq")
-    engine.runAndWait()
-
-# Ensure welcome message plays only once per session
-if 'welcome_spoken' not in st.session_state:
-    speak_welcome()
-    st.session_state['welcome_spoken'] = True
 
 # Set Page Config with Dark Mode
 st.set_page_config(page_title='Growth Mindset Hub', layout='wide', initial_sidebar_state='expanded')
@@ -60,7 +46,7 @@ st.markdown(
 )
 
 # Header
-st.markdown("<h1 class='main-header'>🚀 Growth Mindset Hub by Jareer Shafiq</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='main-header'>🚀 Growth Mindset Hub</h1>", unsafe_allow_html=True)
 
 # Chatbot Section
 st.sidebar.subheader("🤖 Growth Mindset Chatbot")
@@ -74,7 +60,7 @@ chatbot_responses = {
 }
 
 if st.sidebar.button("Submit"):
-    response = chatbot_responses.get(chatbot_input, "I'm not sure about that, but keep learning and growing!")
+    response = chatbot_responses.get(chatbot_input, "I'm not sure about that, but keep learning and growing! 🚀")
     st.sidebar.write(f"🤖 {response}")
 
 # User Input Section in the Center
@@ -115,7 +101,7 @@ if 'started' in st.session_state:
     st.subheader("📖 Mindfulness Exercises")
     if st.button("Start Breathing Exercise"):
         st.write("Breathe in... Hold... Breathe out...")
-    
+
     st.subheader("✅ Habit Tracker")
     habit_options = ["Read a book", "Meditate", "Drink Water", "Journal Writing"]
     selected_habits = {}
@@ -133,7 +119,7 @@ if 'started' in st.session_state:
     for habit, selected in selected_habits.items():
         if selected:
             st.write(f"**{habit}** - {quotes[habit]}")
-    
+
     st.sidebar.subheader("User Profile")
     st.sidebar.write(f"**Name:** {name}")
     st.sidebar.write(f"**Age:** {age}")
