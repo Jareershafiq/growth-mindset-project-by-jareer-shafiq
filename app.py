@@ -2,18 +2,19 @@ import streamlit as st
 import pandas as pd
 import time
 import os
-import threading
-from streamlit_extras.add_vertical_space import add_vertical_space
 import pyttsx3
+from streamlit_extras.add_vertical_space import add_vertical_space
 
-# Function to speak welcome message in a separate thread
+# Function to speak welcome message
 def speak_welcome():
     engine = pyttsx3.init()
     engine.say("Welcome to Growth Mindset Project, made by Jareer Shafiq")
     engine.runAndWait()
 
-# Run text-to-speech in a separate thread
-threading.Thread(target=speak_welcome, daemon=True).start()
+# Ensure welcome message plays only once per session
+if 'welcome_spoken' not in st.session_state:
+    speak_welcome()
+    st.session_state['welcome_spoken'] = True
 
 # Set Page Config with Dark Mode
 st.set_page_config(page_title='Growth Mindset Hub', layout='wide', initial_sidebar_state='expanded')
